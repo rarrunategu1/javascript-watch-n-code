@@ -1,0 +1,34 @@
+WHAT IS PRACTICAL JAVASCRIPT?
+
+It's focused around a single project that gets increasingly better
+and more complex as you learn new skills and techniques.
+
+THE VOICE IN YOUR EAR?
+
+Gordon Zhu started Watch and Code because he didn't want others to go
+through the struggle of learning with bad tutorials that went from simple
+instruction to what seemed like impossible.  Gordon Zhu figured he'd become
+a teacher in order to show others an easier route.
+
+IS THIS COURSE RIGHT FOR YOU?
+
+This course is designed for beginners but advanced develops have also found it 
+helpful in plugging knowledge gaps.
+
+EVERYTHING IS A TODO LIST
+
+We're building a todo list because it'll show you all the main things you need
+to develop software in the browser.  Every application is a todo list.
+
+WHAT YOU'LL BUILD
+
+A todo list with no CSS including the following:
+Add todos
+Toggle a single item
+Toggle all
+Edit a todo
+delete a todo
+
+THE DEVELOPMENT PROCESS
+
+Start with 5 lines of code and increase it as you learn more stuff.
