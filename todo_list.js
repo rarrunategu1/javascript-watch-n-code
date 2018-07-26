@@ -223,3 +223,63 @@ My todos: [ 'item 2', 'item 3', 'new todo', 'hello there' ]
 undefined
 > deleteTodo(2)
 My todos: [ 'item 2', 'item 3', 'hello there' ]
+
+// V3 Objects
+
+/*Objects are used to group related data and functions togeether*/
+
+operatingSystem mac 
+screenSize 15 inches
+purchase Year 2011  //to turn this info into an object you'd do the following:
+
+var myComputer ={
+    operatingSystem: 'mac',
+    screenSize: '15 inches',
+    purchaseYear: 2011
+};
+
+> myComputer.operatingSystem
+'mac'
+> 
+
+//Object and functions
+
+//what is the relationship with objects and functions?
+
+//you can place functions on objects in example below
+
+var rose = {
+    name: 'Rose',
+    sayName: function () {  //function with no name is called an anonymous function.  a function inside an object is called a method 
+    console.log(this.name);  //inside a function "this" refers to the entire object.  .name accesses thee property of the object.  
+    }
+}
+
+> rose.sayName() //this is how you call the functio inside the object
+Rose
+undefined
+
+/* V3 Requirements
+It should store the todos array on an object
+It should have a displayTodos method
+It should have an addTodo method
+It should have a changeTodo method
+It should have a deleteTodo method */
+
+var todoList = {
+  todos: ['item 1', 'item 2', 'item 3'],
+  displayTodos: function() {
+    console.log('My Todos', this.todos);
+  },
+  addTodo: function(todo) {
+    this.todos.push(todo);
+    this.displayTodos();
+  },
+  changeTodo: function(position, newValue) {this.todos[position] = newValue;this.displayTodos();
+  },
+  deleteTodo: function(position) {
+    this.todos.splice(position, 1);
+    this.displayTodos();
+  }
+};
+
