@@ -283,3 +283,83 @@ var todoList = {
   }
 };
 
+/*V4 BOOLEANS
+
+V4 Requirements
+todoList.addTodo should add objects
+todoList.changeTodo should change the todoText property
+todoList.toggleCompleted should change the completed property */
+
+//todoList.addTodo should add objects
+
+//todos property in the todoList should be removed so its empty []; then change addTodo to below:
+
+  addTodo: function(todoText) { 
+    this.todos.push({
+      todoText: todoText,
+      completed: false
+    });
+    
+    todoList.addTodo('this is an object'); // adds this is an object onto the array
+
+//todoList.changeTodo should change the todoText property
+
+ changeTodo: function(position, todoText) { //todo text used to be newValue
+    this.todos[position].todoText = todoText; //used to be this.todos[position] = newValue;
+  this.displayTodos();
+
+  },
+  
+  todoList.changeTodo(0, 'second try');
+  
+//todoList.toggleCompleted should flip the completed property
+
+!true
+false
+!false
+true
+var roseBoolean = false;
+undefined
+!roseBoolean
+true
+roseBoolean
+false
+roseBoolean = !roseBoolean;
+true
+roseBoolean
+true
+
+//above is example of how ! flips a boolean
+
+/*var todoList = {
+  todos: [],
+  displayTodos: function() {
+    console.log('My Todos', this.todos);
+  },
+  addTodo: function(todoText) { 
+    this.todos.push({
+      todoText: todoText,
+      completed: false
+    });
+      this.displayTodos();
+  },
+
+  changeTodo: function(position, todoText) { 
+    this.todos[position].todoText = todoText;
+  this.displayTodos();
+
+  },
+
+  deleteTodo: function(position) {
+    this.todos.splice(position, 1);
+    this.displayTodos();
+  },
+*/
+  toggleCompleted: function(position) { //this is all we added
+    var todo = this.todos[position];
+    todo.completed = !todo.completed;
+    this.displayTodos();
+  }
+};
+todoList.addTodo('boolean testing'); // returns false
+todoList.toggleCompleted(0); // returns true
