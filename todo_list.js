@@ -283,3 +283,281 @@ var todoList = {
   }
 };
 
+/*V7 REQUIREMENTS
+    There should be a "Display todos" button and a "Toggle all" button in the app
+    Clicking "Display Todos" should run todolist.displayTodos
+    Clicking "toggle All" should run todoList.toggleAll
+*/
+
+// There should be a "Display todos" button and a "Toggle all" button in the app
+  
+//inside my html doc add the buttons    
+ <body>
+    <h1>Todo List</h1>
+    <button>Display Todos</button>
+    <button>Toggle All</button>
+  </body>
+
+//Clicking "Display Todos" should run todolist.displayTodos
+    
+//We want to get access to the display todos button.
+
+
+   /*CASE 2: Other wise, make everything true.
+    }else {
+      for (var i = 0; i < totalTodos; i++) {
+        this.todos[i].completed = true;
+      }
+    }
+    this.displayTodos();
+  },
+  };  */
+  var displayTodosButton = document.getElementById('displayTodosButton'); //this is the part that was added
+  console.log(displayTodosButton); //don't forget to give the button in the html document the id of displayTodosButton!!!!
+ 
+
+//We want to run displayTodos method, when someone clicks the button
+
+displayTodosButton.addEventListener('click', function() {
+todoList.displayTodos();
+  });
+  
+//last, if the button is after the script in the html document, move it to the end of the body so that it'll run right
+
+//hit the display Todos button and it should say, your todo list is empty!
+
+todoList.addTodo('first'); //will return first now
+
+//toggleAll button will be the same.  add the id to the button on the html and then:
+
+
+  var toggleAllButton = document.getElementById('toggleAllButton');
+  console.log(toggleAllButton);
+
+  toggleAllButton.addEventListener('click', function () {
+   todoList.toggleAll();
+  });
+  
+//when you todoList.addTodo, it will toggleAll when you click the button.
+
+
+
+
+/*V8 GETTING DATA FROM INPUTS
+
+Our first refactoring!! */
+
+//first go into html and change the buttons:
+
+<button id = "displayTodosButton">Display Todos</button>
+    <button id = "toggleAllButton">Toggle All</button>
+    
+//to this:
+
+
+    <button onclick="handlers.displayTodos()">Display Todos</button>
+    <button onclick="handlers.toggleAll()">Toggle All</button>
+    
+//and change js file:
+    
+
+var displayTodosButton = document.getElementById('displayTodosButton');
+  console.log(displayTodosButton);
+
+   var toggleAllButton = document.getElementById('toggleAllButton');
+  console.log(toggleAllButton);
+ 
+
+  displayTodosButton.addEventListener('click', function() {
+todoList.displayTodos();
+  });
+
+  toggleAllButton.addEventListener('click', function () {
+   todoList.toggleAll();
+  }); 
+  
+  
+//to this, which is much neater:
+
+var handlers = {
+    displayTodos: function() {
+todoList.displayTodos();
+  },
+  toggleAll: function() {
+    todoList.toggleAll();
+  }
+  
+/* V8 REQUIREMENTS
+    It should have working controls for .addTodo 
+    It should have working controls for .changeTodo
+    It should have working controls for .deleteTodo
+    It should have working controls for .toggleCompleted */
+    
+    //button for adding todos
+    
+    //in html document do the following:
+    
+    <div>
+    <button onclick="handlers.addTodo()">Add</button>
+    <input id = "addTodoTextInput"type="text">
+  </div>
+  
+  //in JS file do the following:
+  addTodo: function () {
+    var addTodoTextInput = document.getElementById('addTodoTextInput');
+    todoList.addTodo(addTodoTextInput.value);
+    addTodoTextInput.value = '';  //this part clears the input so it's empty for next add on
+  }
+    
+    
+    //button for changing a todo
+    
+    //in html do the following:
+    
+     <div>
+    <button onclick="handlers.changeTodo()">Change Todo</button>
+    <input id="changeTodoPositionInput" type = "number">
+    <input id = "changeTodoTextInput" type = "text">
+    </div>
+ 
+//in js do the following:
+
+ changeTodo: function () {
+    var changeTodoPositionInput = document.getElementById ('changeTodoPositionInput');
+    var changeTodoTextInput = document.getElementById('changeTodoTextInput');
+    todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);
+      changeTodoPositionInput.value = '';
+      changeTodoTextInput.value = '';
+  }
+  
+// There should be a button for deleting todos
+
+//in the html document:
+
+<div>
+    <button onclick="handlers.deleteTodo()">Delete </button>
+    <input id = "deleteTodoPositionInput" type = "number">
+  </div>
+  
+//in the js file:
+
+ deleteTodo: function () {
+    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+    todoList.deleteTodo(deleteTodoPositionInput.valueAsNumber);
+    deleteTodoPositionInput.value = '';
+  }
+  
+//button for toggling a todo
+
+// in html:
+
+  <div>
+    <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+    <input id = "toggleCompletedPositionInput" type = "number">
+  </div>
+  
+//in js:
+
+toggleCompleted: function() {
+    var toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
+    todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
+    toggleCompletedPositionInput.value = '';
+  },
+  
+/*V9 REQUIREMENTS
+    There should be an li element for every todo
+    Each li element should contain .todoText
+    Each li element should show .completed
+    
+
+//inserting li elements into the DOM
+
+//to do this dynamically on the inspect element
+first on the html put <ul> tags
+
+then in the inspect element
+
+var todoLi = document.createElement('li');
+
+todoLi          //will return
+<li>​</li>​
+
+var todosUl = document.querySelector('ul');
+
+todosUl       //will return
+<ul>​
+​</ul>​
+
+todosUl.appendChild(todoLi);  //this is what will give you your first bullet
+<li>​</li>​
+
+
+
+//There should be an li element for every todo
+
+//in js:
+
+var view = {
+displayTodos:function() {
+  var todosUl = document.querySelector('ul');
+  todosUl.innerHTML = ''; //for whatever html is inside the unordered list and it clears out the list before it starts adding the new li elements
+  for (var i = 0; i < todoList.todos.length; i++) {
+  var todoLi = document.createElement('li');
+  todosUl.appendChild(todoLi);
+
+  }
+}
+
+view.displayTodos(); //on inspect will give you the same amount of bullets as the items that you added
+
+
+// each li element should contain .todoText
+
+ for (var i = 0; i < todoList.todos.length; i++) {
+  var todoLi = document.createElement('li');
+  todoLi.textContent = todoList.todos[i].todoText; //this is the line that was added to the for loop so that text could appear next to the bullet
+  todosUl.appendChild(todoLi);
+
+  }
+
+//each li element should show .completed
+
+/*for (var i = 0; i < todoList.todos.length; i++) {
+  var todoLi = document.createElement('li');*/
+  var todoTextWithCompletion = '';
+  var todo = todoList.todos[i];
+  
+  if (todo.completed === true) {
+    todoTextWithCompletion = '(x) ' + todo.todoText;
+  } else {
+    todoTextWithCompletion = '( ) ' + todo.todoText;
+  }
+
+/*  todoLi.textContent = todoTextWithCompletion;
+  todosUl.appendChild(todoLi);
+
+  }
+}*/
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+  
