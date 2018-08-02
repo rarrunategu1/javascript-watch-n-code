@@ -1,0 +1,299 @@
+IN THE CONSOLE OBSERVATIONS:
+
+> var myName = 'rose';
+undefined
+> function sayName() {
+... console.log(myName);
+... }
+undefined
+> sayName();
+rose
+undefined
+> 
+
+IF I DO THIS WHY DO I GET AN ERROR FOR SECRET?
+
+> function sayName() {
+... var secret = 'watchandcode';
+... console.log(myName);
+... }
+undefined
+> sayName();
+rose
+undefined
+> console.log(secret);
+ReferenceError: secret is not defined
+
+Answer is "if you're inside of a function, you can look out and see data, 
+but the opposite isn't true.  If you're outside, you can't look in.
+
+CIRCLES AND ARROWS
+
+* basically if you're doing a console.log inside of a function,
+the var can be outside of it (global scope).  You can't do the var inside 
+the function and console.log it outside of it.
+
+SUCCESS IS THE PROCESS
+
+ABILITY = PROCESS *TIME
+
+Time is how long you've been programming and really unimportant.
+Process is what you can learn from other programmers.
+It's their set of habits and behaviors.  Makes you faster and more
+efficient with your time.
+
+THE MOST IMPORTANT PART OF YOUR PROCESS
+
+Be great at asking coding questions.
+**Print the following for help**
+https://medium.com/@gordon_zhu/how-to-be-great-at-asking-questions-e37be04d0603
+
+1. Understand the code to the best of your ability.
+2. Clearly describe the problem.
+3. Provide the code that illustrates the problem.
+4. Make sure the code you’re sharing can reproduce the problem.
+5. You must provide a live working demo unless it’s impossible (it’s probably not).
+6. Format your code consistently.
+7. Check yourself for typos.
+8. Explain what you did to troubleshoot the problem.
+9. Explain what you think the problem might be.
+10. Proofread your question.
+11. Send updates and remember this will not be your last question.
+
+
+DATA TYPES AND COMPARISONS
+
+DATA TYPES OVERVIEW IN JAVASCRIPT
+
+Objects
+    {}todoList, arrays, functions
+    
+Primitives (building blocks)
+    string
+    number
+    boolean     true or false
+    undefined   value hasn't been set
+    null        nothing - could be used when waiting for user input
+
+
+
+COMPARISONS WITH PRIMITIVES (values)
+
+> 'rose' === 'rose'
+true
+> 'rose1' === 'rose'
+false
+> 1 === 1
+true
+> 1 === 2
+false
+> true === true
+true
+> true === false
+false
+> undefined === undefined
+true
+> null === null
+true
+> 
+
+
+COMPARISONS WITH OBJECTS(references)
+
+> {} === {}
+false
+> [1, 2, 3] === [1, 2, 3]
+false
+
+Why are obviously equal objects coming back as false?
+
+Because with objects it's comparing the memory addresses.  It's 
+like having the same house on the same street but different addresses.
+
+One way to mae it true is by creating a variable as you see below:
+
+> var houseA = {};
+undefined
+> houseA === houseA
+true
+
+
+HOW ARE PRIMITIVES AND OBJECTS STORED INSIDE OF VARIABLES?
+
+Code Example 1
+
+var myPrimitive = 10;
+The code above basically stores 10 to the var myPrimitive
+
+var myObject = {name: 'gordon'};
+This code however stores the memory address.  Not {name: 'gordon'}
+
+
+Code Example 2
+
+var myHouse = {color: 'blue');
+This stores the memory address of the object {color: 'blue')
+
+myHouse.color = 'red';
+This travels to the memory address of myHouse...then it looks at the 
+color property which is now to be changed to red.
+
+
+Code Example 3
+
+var myHouse = {color: 'blue');
+var color = myHouse.color;  //var color = 'blue'
+color = 'red';              //color = 'red' turns the var color blue to red
+
+but if you call myHouse.color is actually blue after this code
+because that variable didn't change.  
+
+
+Code Example 4
+
+var myHouse1 = {color: 'blue');
+var myHouse2 = myHouse1;
+myHouse2.color = 'red';
+
+After this code:
+myHouse1.color is red
+
+myHouse2.color is red
+
+
+Code Example 5
+
+var myHouse1 = {color: 'blue'};
+var myHouse2 = {color: 'blue'};
+myHouse2.color = 'red';
+
+myHouse1.color is blue
+
+myHouse2.color is red
+
+
+DON'T WONDER ABOUT THE THINGS THE DEBUGGER CAN TELL YOU
+
+Using the debugger is helpful in checking your code for an error.
+It allows you to go line by line and inspecting it in detail.
+
+In your code, at the first line of a method you'll enter:
+debugger;
+
+then inspect it in the console by running whatever method you put the debugger in.  ex.  todoList.displayTodos();
+Make sure to be in the sources tab in the console to go step by step.
+
+debugger gives you a deeper understanding of what's happening in your code.
+
+
+FUNCTIONS INSIDE OF FUNCTIONS
+
+
+> function logTenNumbers() {
+... for (var i = 0; i < 10; i++) {
+..... console.log(i);
+..... }
+... }
+undefined
+> logTenNumbers();
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+undefined
+
+*** to run with debugger do the following on the console:
+
+debugger;
+logTenNumbers();   //does not work on node.  need to do on google chrome.
+
+You can turn the debugger into a function on the console and call it with whichever function you have easily
+
+> function runWithDebugger(ourFunction) {
+... debugger;
+... ourFunction();
+... }
+undefined
+
+
+Below you see the runWithDebugger function being called for the logTenNumbers function which will run the debugger first an then 
+give the output of the 10 numbers.
+
+
+> runWithDebugger(function logTenNumber() {
+... for (var i = 0; i < 10; i++) {
+..... console.log(i);
+..... }
+... });
+
+
+SETTIMEOUT
+
+setTimeout is a built in function in javascript that enhances the behavior
+of any function by turning it into a simple alarm clock.
+
+setTimeout counts in milliseconds so 5 second would be 5000.
+
+trying it on google chrome console:
+
+setTimeout(function() {
+    console.log ('Wake up Rose!');
+}, 5000)
+1   //this section counts 5 seconds before saying wake up rose
+Wake up Rose!
+
+
+FOREACH
+
+***if you want to go through each item in an array you'd do the following:
+
+var students = ['rose', 'elijah'];
+undefined
+function logName(name) {
+    console.log(name);
+}
+undefined
+logName(students[0])
+rose
+
+***another easier way is by doing a for loop:
+
+for (var i =0; i < students.length; i++) {
+    logName(students[i]);
+}
+rose
+elijah
+undefined
+
+
+***but even easier and shorter than that is:
+
+students.forEach(logName)
+rose
+elijah
+
+***you can enter a function where logName is or even enter 
+an unnamed function 
+
+if you want to create your own for each function:
+
+function forEach(myArr, myFunction) {
+ for (var i = 0; i <myArr.length; i++) {
+ myFunction(myArr[i]);
+ }
+}
+
+forEach(students, function(student) {
+console.log(student);
+})
+rose 
+elijah
+
+
+
