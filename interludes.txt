@@ -296,4 +296,45 @@ rose
 elijah
 
 
+ADDEVENTLISTENER
+
+***You can access an element in the console by selecting it, inspect the element and entering the $0 to access it on the console.
+
+$0
+<div class=​"center">​…​</div>​  // this is an example element
+var tutorialsElement = $0;  //set that element to a variable
+undefined
+
+tutorialsElement  //calling the variable returns the element again
+
+<div class=​"center">​…​</div>​
+
+***Add event listener to that and when you click it on the web it console.logs
+the tutorials element was clicked.  console.log(event) and it logs all specifics in that event
+
+tutorialsElement.addEventListener('click', function () {
+    console.log(event); 
+    console.log('The tutorials element was clicked!'); 
+    });
+
+undefined
+2VM311:2 The tutorials element was clicked!
+VM332:2 MouseEvent {isTrusted: true, screenX: 883, screenY: 206, clientX: 206, clientY: 86, …}altKey: falsebubbles: truebutton: 0buttons: 0cancelBubble: falsecancelable: trueclientX: 206clientY: 86composed: truectrlKey: falsecurrentTarget: nulldefaultPrevented: falsedetail: 1eventPhase: 0fromElement: nullisTrusted: truelayerX: 206layerY: 29metaKey: falsemovementX: 0movementY: 0offsetX: 191offsetY: 29pageX: 206pageY: 312path: (9) [h1, div.document-title, div.center, div#wiki-document-head.document-head, main#content, body.document, html, document, Window]relatedTarget: nullreturnValue: truescreenX: 883screenY: 206shiftKey: falsesourceCapabilities: InputDeviceCapabilities {firesTouchEvents: false}srcElement: h1target: h1timeStamp: 423301.2999999919toElement: h1type: "click"view: Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, frames: Window, …}which: 1x: 206y: 86__proto__: MouseEvent
+VM332:2 The tutorials element was clicked!
+
+
+BUZZWORDS: HIGHER ORDER FUNCTIONS AND CALLBACK FUNCTIONS
+
+Higher Order Functions
+    Functions that accept other functions and enhance the behavior of
+    of other functions
+        ex. runWithDebugger, setTimeout, forEach and addEventListener
+
+Callback Functions
+    Functions that are passed into higher order functions
+
+
+
+
+
 
