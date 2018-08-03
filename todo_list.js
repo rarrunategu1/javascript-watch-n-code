@@ -820,6 +820,123 @@ view.displayTodos(); //on inspect will give you the same amount of bullets as th
 
 
 
+V10 CLICK TO DELETE
+
+Introducting Glitch
+
+Glitch.com will allow you to inspect your code without having to going into
+run, inspect, plunker preview target.  It makes things easier
+
+
+The 'return' statement
+
+function multiplyTwoNumbers(a, b) {
+  var result = a * b;
+  return result;    // without the return you wouldn't get the value that you want
+}
+
+var theProductOf2And10 = multiplyTwoNumbers(2, 10);  //this would store the product in the variable
+
+theProductOf2And10  //this now holds the value of 20
+
+20
+
+
+/* V10 REQUIREMENTS
+
+There should be a way to create delete buttons
+There should be a delete button for each todo
+Each li should have an id that has the todo position
+Delete buttons should have access to the todo id
+Clicking delete should update todoList.todos and the DOM
+*/
+
+
+//Create Delete Buttons
+//In the view object at the end of the javascript file do:
+
+ createDeleteButton: function() {
+    var deleteButton = document.createElement('button');  //creates the button
+    deleteButton.textContent = 'Delete'; // give the button a name
+    deleteButton.className = 'deleteButton'; //gives you a class to use on other elements
+    return deleteButton;
+  } 
+  
+
+//There should be a Delete Button for each todo
+
+//IN the todoli section in the js file of my todo list;
+
+ todoLi.textContent = todoTextWithCompletion;
+      todoLi.appendChild(this.createDeleteButton()); //this line is what was added.  'this' works because the createDeleteButton is on the same object
+      todosUl.appendChild(todoLi);
+
+
+//Each Li should have an id that has the todo position
+
+//since 'i' in the for loop iterates through every item in the array and 
+//each time it iterates through each item it gives it a unique position.  That's why
+//I can use ID.
+
+
+      todoLi.id = i;  //this is what we added
+      todoLi.textContent = todoTextWithCompletion;
+      todoLi.appendChild(this.createDeleteButton());
+      todosUl.appendChild(todoLi);
+
+
+//Delete buttons should have access to the todo id
+
+
+//after the createDeleteButton
+
+var todosUl = document.querySelector('ul'); //you want to access the ul because it has all the li elements.
+
+todosUl.addEventListener('click', function(event) {
+   console.log(event.target.parentNode.id); //target.parentNode.id is info that was found in the inspect element
+});
+//so now anything clicked in the unordered list will have an id
+
+
+
+//Clicking delete should update todoList.todos and the DOM
+
+/* On my deleteTodo function I'm now deleting the following because I no longer need it. :
+
+    var deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+    deleteTodoPositionInput.value = '';
+
+***We basically modify the deleteTodo handler to be the following:
+
+  deleteTodo: function(position) {
+    todoList.deleteTodo(position);
+    view.displayTodos();*/
+    
+//AWESOME NOTE ALERT!!  parseInt turns a string into a number.  See exampe below:
+
+ //Get the element that was clicked on
+  var elementClicked = event.target;
+  
+  //Check if elementClicked is a delete button
+  if (elementClicked.className === 'deleteButton') {
+    //run handlers.deleteTodo
+    handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+  }
+  
+  
+//It is a good idea to move this into the view object like so:
+
+
+    
+    
+    
+
+
+
+
+
+
+
 
 
 
